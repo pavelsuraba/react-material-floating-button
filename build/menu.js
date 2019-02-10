@@ -13,7 +13,6 @@ var PropTypes = require('prop-types');
 
 var getClasses = require('./utils/get-classes');
 var getChildren = require('./utils/get-children');
-var childrenValidator = require('./utils/children-validator');
 
 var Menu = function (_React$Component) {
   _inherits(Menu, _React$Component);
@@ -56,9 +55,11 @@ var Menu = function (_React$Component) {
 
       return React.createElement(
         'ul',
-        { className: classes,
+        {
+          className: classes,
           'data-mfb-toggle': this.props.method,
-          'data-mfb-state': this.state.isOpen ? 'open' : 'closed' },
+          'data-mfb-state': this.state.isOpen ? 'open' : 'closed'
+        },
         React.createElement(
           'li',
           { className: 'mfb-component__wrap' },
@@ -79,7 +80,7 @@ var Menu = function (_React$Component) {
 Menu.propTypes = {
   effect: PropTypes.oneOf(['zoomin', 'slidein', 'slidein-spring', 'fountain']).isRequired,
   position: PropTypes.oneOf(['tl', 'tr', 'bl', 'br']).isRequired,
-  children: childrenValidator
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
 
